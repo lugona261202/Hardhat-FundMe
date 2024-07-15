@@ -51,4 +51,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   log("------------------");
 };
 
+if (
+  !developmentChains.includes(network.name) &&
+  process.env.ETHERSCAN_API_KEY
+) {
+  await verify(fundMe.address, [ethUsdPriceFeedAddress]);
+}
+
 module.exports.tags = ["all", "fundme"];
