@@ -6,6 +6,9 @@ require("hardhat-deploy");
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 const COINMARKETKEY_API_KEY = process.env.COINMARKETKEY_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const SEPOLIA_RPC_URL =
+  process.env.SEPOLIA_RPC_URL ||
+  "https://eth-sepolia.g.alchemy.com/v2/YOUR-API-KEY";
 
 module.exports = {
   //solidity: "0.8.24",
@@ -27,6 +30,12 @@ module.exports = {
     hardhat: {
       chainId: 31337,
       // gasPrice: 130000000000,
+    },
+    sepolia: {
+      url: SEPOLIA_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 11155111,
+      blockConfirmations: 6,
     },
   },
   etherscan: {
